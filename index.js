@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const yargs = require('yargs');
 const { existsSync } = require('fs-extra');
 const { resolve, relative } = require('path');
