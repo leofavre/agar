@@ -1,12 +1,9 @@
 language: node_js
-​
+notifications:
+  email: false
 node_js: 8
-​
-deploy:
-  provider: script
-  skip_cleanup: true
-  script:
-    - npx semantic-release
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
+branches:
   on:
-    branch: release
-    repo: leofavre/agar
+    - master
