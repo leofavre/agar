@@ -36,6 +36,6 @@
   },
   "scripts": {
     "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once --pro"
   }
 }
