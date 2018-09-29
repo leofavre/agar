@@ -1,11 +1,11 @@
 {
-  "name": "agar",
+  "name": "@leofavre/agar",
   "version": "0.1.0",
   "description": "Development environment for web components",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leofavre/agar.git"
+    "url": "https://github.com/leofavre/agar.git"
   },
   "author": "Leonardo Favre <leo@leofavre.com> (http://www.leofavre.com/)",
   "license": "MIT",
@@ -24,6 +24,10 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
+    "semantic-release": "^15.9.16",
     "semistandard": "^12.0.1"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release"
   }
 }
