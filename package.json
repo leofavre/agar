@@ -7,6 +7,13 @@
     "type": "git",
     "url": "https://github.com/leofavre/agar.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once --pro"
+  },
   "author": "Leonardo Favre <leo@leofavre.com> (http://www.leofavre.com/)",
   "license": "MIT",
   "bugs": {
@@ -33,9 +40,5 @@
     "semantic-release": "^15.9.16",
     "semistandard": "^12.0.1",
     "travis-deploy-once": "^5.0.9"
-  },
-  "scripts": {
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once --pro"
   }
 }
