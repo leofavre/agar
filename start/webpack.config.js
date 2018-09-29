@@ -6,7 +6,7 @@ const { basePath, packagePath } = process.env;
 
 module.exports = () => ({
   context: resolve(packagePath, 'public'),
-  entry: 'index.js',
+  entry: './index.js',
   mode: 'development',
   resolve: {
     mainFields: ['module', 'jsnext:main', 'main']
@@ -17,14 +17,17 @@ module.exports = () => ({
     host: '0.0.0.0',
     historyApiFallback: true,
     publicPath: '/',
-    contentBase: resolve(basePath),
+    contentBase: [
+      resolve(basePath),
+      resolve(packagePath, 'public')
+    ],
     watchContentBase: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       inject: 'body',
-      template: 'index.html'
+      template: './index.html'
     })
   ]
 });
