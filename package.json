@@ -14,6 +14,11 @@
   },
   "homepage": "https://github.com/leofavre/agar#readme",
   "dependencies": {
+    "fs-extra": "^7.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "shelljs": "^0.8.2",
+    "webpack": "^4.20.2",
+    "webpack-dev-server": "^3.1.9",
     "yargs": "^12.0.2"
   },
   "devDependencies": {
