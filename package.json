@@ -10,6 +10,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "agar": "./index.js"
+  },
   "scripts": {
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once --pro"
