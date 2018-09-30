@@ -34,6 +34,7 @@ const argv = yargs
   .option('base', {
     alias: 'b',
     string: true,
+    description: OPT_ROOT_DESC,
     default: DEFAULT_PACKAGES_ROOT,
     hidden: true
   })
