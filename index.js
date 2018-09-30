@@ -9,7 +9,7 @@ const MANDATORY_PACKAGE = 'A package name must be provided';
 const MISSING_COMMAND = 'Please pass a command';
 const MISSING_PACKAGE = 'Please pass a package name';
 const OPT_BASE_DESC = 'Path to the base folder';
-const OPT_PACKAGE_DESC = 'A package name';
+const OPT_PACKAGE_DESC = 'A package name (mandatory)';
 const OPT_SCOPE_DESC = 'A package name (omit option for all packages)';
 
 const POSITIONAL_SCOPE = {
