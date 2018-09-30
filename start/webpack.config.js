@@ -1,8 +1,14 @@
-const { resolve } = require('path');
+const { resolve, dirname } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const globby = require('globby');
+const uniq = require('lodash.uniq');
 
 const { basePath, packagePath } = process.env;
+
+const watchedCss = uniq(globby
+  .sync(`${packagePath}/**/*.css`)
+  .map(dirname));
 
 module.exports = () => ({
   context: resolve(packagePath, 'public'),
@@ -11,15 +17,22 @@ module.exports = () => ({
   resolve: {
     mainFields: ['module', 'jsnext:main', 'main']
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'style-loader/url', 'file-loader' ]
+      }
+    ]
+  },
   devServer: {
     open: true,
     hot: true,
     host: '0.0.0.0',
     historyApiFallback: true,
-    publicPath: '/',
     contentBase: [
       resolve(basePath),
-      resolve(packagePath, 'public')
+      ...watchedCss.map(path => resolve(path))
     ],
     watchContentBase: true
   },
