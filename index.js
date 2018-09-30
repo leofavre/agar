@@ -15,19 +15,28 @@ const OPT_DEBUG_DESC = 'Run in debug mode';
 const OPT_DEPLOY_DESC = 'Prepare for deployment';
 const OPT_SCOPE_DESC = 'Package affected by script';
 
+const POSITIONAL_SCOPE = {
+  alias: 's',
+  string: true,
+  description: OPT_SCOPE_DESC,
+  default: '*'
+};
+
 const argv = yargs
   .locale('en')
-  .option('scope', {
-    alias: 's',
-    string: true,
-    description: OPT_SCOPE_DESC,
-    default: '*'
-  })
+  .usage('$0 <cmd> [args]')
   .option('base', {
     alias: 'b',
     string: true,
     description: OPT_BASE_DESC,
     default: 'packages'
+  })
+  .command('start [scope]', CMD_START_DESC, yargs => {
+    yargs
+      .positional('scope', {
+        ...POSITIONAL_SCOPE,
+        demandOption: MISSING_SCOPE
+      });
   })
   .command('build', CMD_BUILD_DESC, {
     deploy: {
@@ -43,14 +52,6 @@ const argv = yargs
       description: OPT_DEBUG_DESC
     }
   })
-  .command('start', CMD_START_DESC, {
-    scope: {
-      string: true,
-      description: OPT_SCOPE_DESC,
-      default: undefined,
-      demandOption: MISSING_SCOPE
-    }
-  })
   .command('screen-test', CMD_SCREEN_TEST_DESC)
   .demandCommand(1, 1, MISSING_COMMAND)
   .alias('h', 'help')
@@ -63,7 +64,7 @@ const packagePath = relative('.', resolve(basePath, scope));
 if (scope !== '*' && !existsSync(packagePath)) {
   console.log(`${INVALID_SCOPE}: ${scope}`);
 } else {
-  const cmd = require(`./${commands[0]}/index.js`);
+  const cmd = require(`./scripts/${commands[0]}/index.js`);
 
   if (typeof cmd === 'function') {
     cmd({
