@@ -4,14 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const globby = require('globby');
 const uniq = require('lodash.uniq');
 
-const { basePath, packagePath } = process.env;
+const { AGAR_SCOPE_PATH, AGAR_PACKAGES_ROOT } = process.env;
 
 const watchedCss = uniq(globby
-  .sync(`${packagePath}/**/*.css`)
+  .sync(`${AGAR_SCOPE_PATH}/**/*.css`)
   .map(dirname));
 
 module.exports = () => ({
-  context: resolve(packagePath, 'public'),
+  context: resolve(AGAR_SCOPE_PATH, 'public'),
   entry: './index.js',
   mode: 'development',
   resolve: {
@@ -31,8 +31,8 @@ module.exports = () => ({
     host: '0.0.0.0',
     historyApiFallback: true,
     contentBase: [
-      resolve(basePath),
-      ...watchedCss.map(path => resolve(path))
+      resolve(AGAR_PACKAGES_ROOT),
+      ...watchedCss.map(filePath => resolve(filePath))
     ],
     watchContentBase: true
   },
