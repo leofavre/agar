@@ -5,6 +5,7 @@ const { resolve, relative } = require('path');
 
 const DEFAULT_PACKAGES_ROOT = 'packages';
 
+const CMD_BUILD_DESC = 'Build packages';
 const CMD_START_DESC = 'Start development server';
 const CMD_TEST_DESC = 'Test packages';
 const INVALID_SCOPE = 'Invalid package';
@@ -13,6 +14,7 @@ const MISSING_COMMAND = 'Please pass a command';
 const MISSING_PACKAGE = 'Please pass a package name';
 const OPT_ROOT_DESC = 'The packages\'s parent folder';
 const OPT_DEBUG_DESC = 'Run tests in debug mode';
+const OPT_DEPLOY_DESC = 'Prepare build for deployment';
 const OPT_PACKAGE_DESC = 'A package name (mandatory)';
 const OPT_SCOPE_DESC = 'A package name (omit for all packages)';
 
@@ -37,6 +39,15 @@ const argv = yargs
     description: OPT_ROOT_DESC,
     default: DEFAULT_PACKAGES_ROOT,
     hidden: true
+  })
+  .command('build [scope]', CMD_BUILD_DESC, yargs => {
+    yargs
+      .positional('scope', POSITIONAL_SCOPE)
+      .option('deploy', {
+        alias: 'D',
+        boolean: true,
+        description: OPT_DEPLOY_DESC
+      });
   })
   .command('start [scope]', CMD_START_DESC, yargs => {
     yargs
