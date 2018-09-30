@@ -4,17 +4,18 @@ const { existsSync } = require('fs-extra');
 const { resolve, relative } = require('path');
 
 const CMD_START_DESC = 'Start development server';
-const INVALID_SCOPE = 'Invalid scope';
-const MISSING_COMMAND = 'Please choose a command';
-const MISSING_SCOPE = 'Please choose a scope';
-const OPT_BASE_DESC = 'Path to the packages\' folder';
-const OPT_SCOPE_DESC = 'Package affected by script';
+const INVALID_SCOPE = 'Invalid package';
+const MANDATORY_PACKAGE = 'A package name must be provided';
+const MISSING_COMMAND = 'Please pass a command';
+const MISSING_PACKAGE = 'Please pass a package name';
+const OPT_BASE_DESC = 'Path to the base folder';
+const OPT_PACKAGE_DESC = 'A package name';
+const OPT_SCOPE_DESC = 'A package name (omit option for all packages)';
 
 const POSITIONAL_SCOPE = {
   alias: 's',
   string: true,
-  description: OPT_SCOPE_DESC,
-  default: '*'
+  description: OPT_SCOPE_DESC
 };
 
 const argv = yargs
@@ -30,7 +31,8 @@ const argv = yargs
     yargs
       .positional('scope', {
         ...POSITIONAL_SCOPE,
-        demandOption: MISSING_SCOPE
+        description: OPT_PACKAGE_DESC,
+        demandOption: MISSING_PACKAGE
       });
   })
   .demandCommand(1, 1, MISSING_COMMAND)
@@ -38,13 +40,16 @@ const argv = yargs
   .help()
   .argv;
 
-const { _: commands, scope, base: basePath } = argv;
+const { _: commands, scope = '*', base: basePath } = argv;
 const packagePath = relative('.', resolve(basePath, scope));
+const cmdName = commands[0];
 
-if (scope !== '*' && !existsSync(packagePath)) {
+if (cmdName === 'start' && scope === '*') {
+  console.log(MANDATORY_PACKAGE);
+} else if ((cmdName === 'start' || scope !== '*') && !existsSync(packagePath)) {
   console.log(`${INVALID_SCOPE}: ${scope}`);
 } else {
-  const cmd = require(`./scripts/${commands[0]}/index.js`);
+  const cmd = require(`./scripts/${cmdName}/index.js`);
 
   if (typeof cmd === 'function') {
     cmd({
