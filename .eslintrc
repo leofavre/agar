@@ -14,9 +14,7 @@
       "ignorePattern": "^(import|export)\\s.+\\sfrom\\s.+;$",
       "ignoreUrls": true,
       "ignoreTemplateLiterals": true
-    }],
-    "import/no-unresolved": "off",
-    "no-unused-expressions": "off"
+    }]
   },
   "globals": {
     "describe": true,
@@ -30,5 +28,5 @@
     "afterEach": true,
     "fixture": true,
     "test": true
-  },
+  }
 }
