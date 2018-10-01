@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/leofavre/agar/compare/v1.4.2...v1.5.0) (2018-10-01)
+
+
+### Features
+
+* Added `build` command ([cc8dba0](https://github.com/leofavre/agar/commit/cc8dba0))
+
 ## [1.4.2](https://github.com/leofavre/agar/compare/v1.4.1...v1.4.2) (2018-09-30)
 
 
