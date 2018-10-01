@@ -88,14 +88,13 @@ if (cmdName === 'start' && scope === '*') {
 } else if ((cmdName === 'start' || scope !== '*') && !existsSync(scopePath)) {
   console.log(`${INVALID_SCOPE}: ${scope}`);
 } else {
+  process.env.AGAR_SCOPE = scope;
+  process.env.AGAR_SCOPE_PATH = scopePath;
+  process.env.AGAR_PACKAGES_ROOT = packagesRoot;
+
   const cmd = require(`./scripts/${cmdName}/index.js`);
 
   if (typeof cmd === 'function') {
-    cmd({
-      ...argv,
-      scope,
-      scopePath,
-      packagesRoot
-    });
+    cmd(argv);
   }
 }
