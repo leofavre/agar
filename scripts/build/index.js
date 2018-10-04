@@ -11,7 +11,8 @@ const bundleJsImports = require('./helpers/bundleJsImports.js');
 const { AGAR_SCOPE, AGAR_SCOPE_PATH } = process.env;
 
 module.exports = ({ deploy }) => {
-  console.log(`Building ${AGAR_SCOPE !== '*' ? AGAR_SCOPE : 'all packages'}\n`);
+  console.log(`Building ${AGAR_SCOPE !== '*' ? AGAR_SCOPE : 'all packages'} ` +
+    `for ${deploy ? 'deployment' : 'development'}\n`);
 
   const packagePaths = (AGAR_SCOPE === '*')
     ? globby.sync(AGAR_SCOPE_PATH, { onlyDirectories: true })
