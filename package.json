@@ -78,7 +78,6 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
     "semantic-release": "^15.9.16",
-    "semistandard": "^12.0.1",
-    "travis-deploy-once": "^5.0.9"
+    "semistandard": "^12.0.1"
   }
 }
