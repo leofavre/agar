@@ -1,6 +1,6 @@
 {
   "name": "@leofavre/agar",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Development environment for web components",
   "main": "index.js",
   "repository": {

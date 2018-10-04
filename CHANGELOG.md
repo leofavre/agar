@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/leofavre/agar/compare/v1.5.0...v1.5.1) (2018-10-04)
+
+
+### Bug Fixes
+
+* Specify build type: development or deployment ([8afa8a8](https://github.com/leofavre/agar/commit/8afa8a8))
+
 # [1.5.0](https://github.com/leofavre/agar/compare/v1.4.2...v1.5.0) (2018-10-01)
 
 
