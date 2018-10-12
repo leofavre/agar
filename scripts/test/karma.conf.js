@@ -25,7 +25,7 @@ if (AGAR_SCOPE === '*') {
 
 const basePath = relative(__dirname, '.');
 const cssFiles = join(AGAR_SCOPE_PATH, 'src/**/*.css');
-const testFiles = join(AGAR_PACKAGES_ROOT, '*', 'src/**/**.+(test|spec).js');
+const testFiles = join(AGAR_SCOPE_PATH, 'src/**/**.+(test|spec).js');
 const urlRoot = 'root';
 const proxyIn = join(`/${urlRoot}/`);
 const proxyOut = join(proxyIn, 'base', AGAR_PACKAGES_ROOT, '/');

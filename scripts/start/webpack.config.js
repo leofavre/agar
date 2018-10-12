@@ -3,15 +3,24 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const globby = require('globby');
 const uniq = require('lodash.uniq');
+const notGitIgnored = require('../../helpers/notGitIgnored.js');
 
 const { AGAR_SCOPE_PATH, AGAR_PACKAGES_ROOT } = process.env;
 
-const watchedCss = uniq(globby
+const context = resolve(AGAR_SCOPE_PATH, 'public');
+
+const foldersWithCssFiles = uniq(globby
   .sync(`${AGAR_SCOPE_PATH}/**/*.css`)
+  .filter(notGitIgnored)
   .map(dirname));
 
+const contentBase = [
+  resolve(AGAR_PACKAGES_ROOT),
+  ...foldersWithCssFiles.map(dirPath => resolve(dirPath))
+];
+
 module.exports = () => ({
-  context: resolve(AGAR_SCOPE_PATH, 'public'),
+  context,
   entry: './index.js',
   mode: 'development',
   resolve: {
@@ -30,10 +39,7 @@ module.exports = () => ({
     hot: true,
     host: '0.0.0.0',
     historyApiFallback: true,
-    contentBase: [
-      resolve(AGAR_PACKAGES_ROOT),
-      ...watchedCss.map(filePath => resolve(filePath))
-    ],
+    contentBase,
     watchContentBase: true
   },
   plugins: [
