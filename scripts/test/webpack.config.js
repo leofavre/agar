@@ -2,12 +2,14 @@ const { resolve } = require('path');
 
 const { AGAR_PACKAGES_ROOT } = process.env;
 
+const context = resolve(AGAR_PACKAGES_ROOT);
+
 module.exports = () => ({
   mode: 'development',
   resolve: {
     mainFields: ['module', 'jsnext:main', 'main']
   },
-  context: resolve(AGAR_PACKAGES_ROOT),
+  context,
   module: {
     rules: [
       {

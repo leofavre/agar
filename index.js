@@ -4,6 +4,7 @@ const { existsSync } = require('fs-extra');
 const { resolve, relative } = require('path');
 
 const DEFAULT_PACKAGES_ROOT = 'packages';
+const DEFAULT_SCOPE = '*';
 
 const CMD_BUILD_DESC = 'Build packages';
 const CMD_START_DESC = 'Start development server';
@@ -21,7 +22,8 @@ const OPT_SCOPE_DESC = 'A package name (omit for all packages)';
 const POSITIONAL_SCOPE = {
   alias: 's',
   string: true,
-  description: OPT_SCOPE_DESC
+  description: OPT_SCOPE_DESC,
+  default: DEFAULT_SCOPE
 };
 
 const argv = yargs
@@ -32,13 +34,6 @@ const argv = yargs
     string: true,
     description: OPT_ROOT_DESC,
     default: DEFAULT_PACKAGES_ROOT
-  })
-  .option('base', {
-    alias: 'b',
-    string: true,
-    description: OPT_ROOT_DESC,
-    default: DEFAULT_PACKAGES_ROOT,
-    hidden: true
   })
   .command('build [scope]', CMD_BUILD_DESC, yargs => {
     yargs
@@ -74,23 +69,26 @@ const argv = yargs
 
 const {
   _: positionals,
-  scope = '*',
-  root,
-  base
+  scope,
+  root
 } = argv;
 
-const packagesRoot = root || base;
-const scopePath = relative('.', resolve(packagesRoot, scope));
+const AGAR_PACKAGES_ROOT = root || '.';
+const AGAR_SCOPE = scope || '';
+const AGAR_SCOPE_PATH =
+  relative('.', resolve(AGAR_PACKAGES_ROOT, AGAR_SCOPE)) || '.';
+
 const cmdName = positionals[0];
 
-if (cmdName === 'start' && scope === '*') {
+if (cmdName === 'start' && AGAR_SCOPE === '*') {
   console.log(MANDATORY_PACKAGE);
-} else if ((cmdName === 'start' || scope !== '*') && !existsSync(scopePath)) {
-  console.log(`${INVALID_SCOPE}: ${scope}`);
+} else if ((cmdName === 'start' || AGAR_SCOPE !== '*') &&
+  !existsSync(AGAR_SCOPE_PATH)) {
+  console.log(`${INVALID_SCOPE}: ${AGAR_SCOPE}`);
 } else {
-  process.env.AGAR_SCOPE = scope;
-  process.env.AGAR_SCOPE_PATH = scopePath;
-  process.env.AGAR_PACKAGES_ROOT = packagesRoot;
+  process.env.AGAR_SCOPE = AGAR_SCOPE;
+  process.env.AGAR_SCOPE_PATH = AGAR_SCOPE_PATH;
+  process.env.AGAR_PACKAGES_ROOT = AGAR_PACKAGES_ROOT;
 
   const cmd = require(`./scripts/${cmdName}/index.js`);
 
