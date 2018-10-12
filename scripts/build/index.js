@@ -7,14 +7,13 @@ const transformEs6ToEs5 = require('./helpers/transformEs6ToEs5.js');
 const transformImportToCjs = require('./helpers/transformImportToCjs.js');
 const getPackageName = require('./helpers/getPackageName.js');
 const bundleJsImports = require('./helpers/bundleJsImports.js');
+const formatScriptLog = require('../../helpers/formatScriptLog.js');
 const notGitIgnored = require('../../helpers/notGitIgnored.js');
 
 const { AGAR_SCOPE, AGAR_SCOPE_PATH } = process.env;
 
 module.exports = ({ deploy }) => {
-  console.log(`Building ${AGAR_SCOPE !== '*' && AGAR_SCOPE !== ''
-    ? AGAR_SCOPE
-    : 'all packages'} ` +
+  console.log(`${formatScriptLog('Building', AGAR_SCOPE)} ` +
     `for ${deploy ? 'deployment' : 'development'}\n`);
 
   const packagePaths = (AGAR_SCOPE === '*')
