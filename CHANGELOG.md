@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/leofavre/agar/compare/v1.5.1...v1.6.0) (2018-10-12)
+
+
+### Bug Fixes
+
+* Improve first log message ([8e2ce6b](https://github.com/leofavre/agar/commit/8e2ce6b))
+
+
+### Features
+
+* Make scripts compatible with --no-root and --no-scope ([cfa6d4d](https://github.com/leofavre/agar/commit/cfa6d4d))
+
 ## [1.5.1](https://github.com/leofavre/agar/compare/v1.5.0...v1.5.1) (2018-10-04)
 
 
