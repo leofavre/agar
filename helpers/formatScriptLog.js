@@ -1,2 +1,3 @@
-module.exports = (name, scope) => `${name} ${(scope !== '*' && scope !== ''
-  ? scope : 'all packages')}`;
+module.exports = (name, scope) => `${name} ${(scope === '*'
+  ? 'all packages'
+  : scope === '' ? 'package' : scope)}`;
