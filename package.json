@@ -14,8 +14,7 @@
     "agar": "./index.js"
   },
   "scripts": {
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once --pro"
+    "semantic-release": "semantic-release"
   },
   "author": "Leonardo Favre <leo@leofavre.com> (http://www.leofavre.com/)",
   "license": "MIT",
