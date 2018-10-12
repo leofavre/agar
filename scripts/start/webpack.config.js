@@ -9,14 +9,14 @@ const { AGAR_SCOPE_PATH, AGAR_PACKAGES_ROOT } = process.env;
 
 const context = resolve(AGAR_SCOPE_PATH, 'public');
 
-const foldersWithCssFiles = uniq(globby
+const watchedfoldersWithCssFiles = uniq(globby
   .sync(`${AGAR_SCOPE_PATH}/**/*.css`)
   .filter(notGitIgnored)
   .map(dirname));
 
 const contentBase = [
   resolve(AGAR_PACKAGES_ROOT),
-  ...foldersWithCssFiles.map(dirPath => resolve(dirPath))
+  ...watchedfoldersWithCssFiles.map(dirPath => resolve(dirPath))
 ];
 
 module.exports = () => ({
