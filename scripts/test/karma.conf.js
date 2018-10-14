@@ -10,7 +10,7 @@ let reports = {
   }
 };
 
-if (AGAR_SCOPE === '*') {
+if (AGAR_SCOPE === '*' || AGAR_SCOPE === '') {
   reports = {
     ...reports,
     reporters: [...reports.reporters, 'coverage-istanbul'],
