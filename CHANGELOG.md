@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/leofavre/agar/compare/v1.6.1...v1.6.2) (2018-10-14)
+
+
+### Bug Fixes
+
+* Fix coverage report ([d7fe93b](https://github.com/leofavre/agar/commit/d7fe93b))
+
 ## [1.6.1](https://github.com/leofavre/agar/compare/v1.6.0...v1.6.1) (2018-10-14)
 
 
