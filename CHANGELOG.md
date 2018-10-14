@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/leofavre/agar/compare/v1.6.0...v1.6.1) (2018-10-14)
+
+
+### Bug Fixes
+
+* Generate coverage for packages without root and scope ([2e765d8](https://github.com/leofavre/agar/commit/2e765d8))
+
 # [1.6.0](https://github.com/leofavre/agar/compare/v1.5.1...v1.6.0) (2018-10-12)
 
 
