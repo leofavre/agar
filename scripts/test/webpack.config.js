@@ -1,8 +1,9 @@
 const { resolve } = require('path');
+const notGitIgnored = require('../../helpers/notGitIgnored.js');
 
 const { AGAR_PACKAGES_ROOT } = process.env;
 
-const context = resolve(AGAR_PACKAGES_ROOT);
+const context = resolve(AGAR_PACKAGES_ROOT, 'src');
 
 module.exports = () => ({
   mode: 'development',
@@ -20,7 +21,9 @@ module.exports = () => ({
             esModules: true
           }
         },
-        include: /src(\\|\/)/,
+        include (filePath) {
+          return notGitIgnored(filePath);
+        },
         exclude: /(test|spec)\.js$/
       }
     ]
