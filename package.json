@@ -1,7 +1,7 @@
 {
   "name": "@leofavre/agar",
   "version": "1.6.2",
-  "description": "Development environment for web components",
+  "description": "Command-line tools for developing web components.",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -13,6 +13,12 @@
   "bin": {
     "agar": "./index.js"
   },
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "cli",
+    "command-line-interface"
+  ],
   "scripts": {
     "semantic-release": "semantic-release"
   },
