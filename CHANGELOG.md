@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/leofavre/agar/compare/v1.6.2...v1.6.3) (2018-10-24)
+
+
+### Bug Fixes
+
+* Use default devServer host ([ff9ae5b](https://github.com/leofavre/agar/commit/ff9ae5b))
+
 ## [1.6.2](https://github.com/leofavre/agar/compare/v1.6.1...v1.6.2) (2018-10-14)
 
 
